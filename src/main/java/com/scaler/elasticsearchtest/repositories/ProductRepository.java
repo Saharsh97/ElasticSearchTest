@@ -6,5 +6,5 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 import java.util.List;
 
 public interface ProductRepository extends ElasticsearchRepository<Product, Long> {
-    List<Product> findAllByTitle(String title);
+    List<Product> findAllByTitleContaining(String title);
 }

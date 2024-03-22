@@ -2,6 +2,7 @@ package com.scaler.elasticsearchtest.controller;
 
 import com.scaler.elasticsearchtest.models.Product;
 import com.scaler.elasticsearchtest.repositories.ProductRepository;
+import com.scaler.elasticsearchtest.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
     @GetMapping
     public Iterable<Product> findAll() {
-        return productRepository.findAll();
+        return productService.findAll();
     }
 
     @GetMapping("/find")
-    public Iterable<Product> findByTitle(@RequestParam String title){
-        return productRepository.findAllByTitle(title);
+    public Iterable<Product> findAllByTitle(@RequestParam String title){
+        return productService.findAllByTitle(title);
     }
 
     @PostMapping
     public void save(@RequestBody Product product) {
-        productRepository.save(product);
+        productService.save(product);
     }
 }
